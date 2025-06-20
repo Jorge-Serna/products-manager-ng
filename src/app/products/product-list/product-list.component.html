@@ -1,0 +1,30 @@
+<div class="mt-5">
+  <table class="table table-info table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product</th>
+        <th scope="col">Date</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.product_name }}</td>
+        <td>{{ product.upload_date }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.price | currency }}</td>
+        <td *ngIf="product.active">Active</td>
+        <td *ngIf="!product.active">Inctive</td>
+        <td>
+          <a class="mx-1 p-2 text-decoration-none bg-warning rounded text-black" [routerLink]="['/updateProduct', product.id]">Edit</a>
+          <a class="mx-1 p-2 text-decoration-none bg-danger rounded text-black" [routerLink]="'/home'" (click)="removeProduct(product.id)">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
