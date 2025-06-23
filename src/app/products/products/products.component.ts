@@ -12,6 +12,7 @@ export class ProductsComponent implements OnInit {
   constructor(private router: Router, private productsService: ProductsService) {}
 
   ngOnInit(): void {
+    console.log('en home')
     this.productsService.getProducts();
   }
 

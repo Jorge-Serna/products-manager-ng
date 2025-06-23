@@ -1,105 +1,76 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProductsService } from '../../products.service';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../Product.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ProductsService } from '../../products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrl: './product-form.component.scss'
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent {
 
-  ngOnInit(): void {
-    
+  productForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder, 
+    private productsService: ProductsService,
+    private router: Router
+  ) {
+
+    this.productForm = this.fb.group({
+      nameProduct: ['', Validators.required],
+      creationDate: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required]
+    })
+
   }
 
-  product_id: number;
-  product_name: string;
-  upload_date: Date;
-  description: string;
-  price: number;
-  status: boolean;
+  async onSubmit() {
 
-  onSubmit(form) {}
+    if(this.productForm.valid) {
 
-  status_value;
+      console.log(this.productForm.value)
 
-  // product_id_to_edit: number;
+      var formValue = this.productForm.value;
 
-  // @Output() takeRegisterToParent = new EventEmitter<string>();
+      const newProduct: Product = new Product(
+        formValue.nameProduct,
+        formValue.creationDate,
+        formValue.description,
+        +formValue.price
+      );
 
-  // constructor(
-  //   private productsService: ProductsService,
-  //   private router: Router,
-  //   private route: ActivatedRoute
-  // ){}
+      await this.productsService.createProduct(newProduct);
 
-  // ngOnInit(): void {
-  //   this.product_id_to_edit = Number(this.route.snapshot.params['id'])
-    
-  //   if(this.product_id_to_edit)
-  //   {
-  //     let product_to_be_edited = this.productsService.getProductById(this.product_id_to_edit);
+      this.redirectTo('home');
 
-  //     console.log(product_to_be_edited)
+    } else {
+      console.log('something went wrong, try to post this product later please');
+    }
 
-  //     this.product_id = product_to_be_edited.id;
-  //     this.product_name = product_to_be_edited.product_name;
-  //     this.upload_date = product_to_be_edited.upload_date;
-  //     this.description = product_to_be_edited.description;
-  //     this.price = product_to_be_edited.price;
-  //     // this.status = product_to_be_edited.active;
-  //   }
-  // }
+  }
 
-  // onSubmit(form)
-  // {
-  //   this.product_id = this.getProductID()
-  //   this.status = this.getCheckboxValue(this.status_value);
-  //   let new_product = new Product(
-  //     this.product_id, 
-  //     this.product_name, 
-  //     this.upload_date, 
-  //     this.description, 
-  //     this.price, 
-  //     this.status
-  //   );
-  //   if(this.product_id_to_edit)
-  //   {
-  //     this.productsService.updateProduct(this.product_id_to_edit, new_product)
-  //   }else{
-      
-  //     this.productsService.addItemsToTheList(new_product)
-  //   }
-  //   form.reset();
-  //   this.router.navigate(['home'])
-  // }
+  getCheckboxValue(value)
+  {
+    let status
+    if(value == 'active'){
+      status = true;
+      return status;
+    }
+    else if(value == 'inactive'){
+      status  = false;
+      return status;
+    }
+    else
+      console.log('error')
+  }
 
-  // getCheckboxValue(value)
-  // {
-  //   let status
-  //   if(value == 'active'){
-  //     status = true;
-  //     return status;
-  //   }
-  //   else if(value == 'inactive'){
-  //     status  = false;
-  //     return status;
-  //   }
-  //   else
-  //     console.log('error')
-  // }
-
-  // getProductID()
-  // {
-  //   if(this.product_id_to_edit)
-  //     return this.product_id;
-  //   else
-  //   {
-  //     const list_of_products = this.productsService.getProducts();
-  //     return list_of_products.length + 1;
-  //   }
-  // }
+  redirectTo(route: string)
+  {
+    this.router.navigate([route]);
+  }
   
 }

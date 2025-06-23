@@ -1,22 +1,23 @@
 <div class="container mt-5">
-    <form #form_products (submit)="onSubmit(form_products)" class="w-50 mx-auto">
+    <form [formGroup]="productForm"  (submit)="onSubmit()" class="w-50 mx-auto">
         <div class="mb-3">
-            <label for="product_name">Product</label>
-            <input type="text" class="form-control" id="product_name" name="product_name" [(ngModel)]="product_name">
+            <label for="nameProduct">Product</label>
+            <input type="text" class="form-control" id="nameProduct" name="nameProduct" required autocomplete="off" formControlName="nameProduct">
         </div>
         <div class="mb-3">
-            <label for="upload_date">Date of creation</label>
-            <input type="date" class="form-control" id="upload_date" name="upload_date" [(ngModel)]="upload_date">
+            <label for="creationDate">Date of creation</label>
+            <input type="date" class="form-control" id="creationDate" name="creationDate" required autocomplete="off" formControlName="creationDate">
         </div>
         <div class="mb-3">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" name="description" [(ngModel)]="description">
+            <input type="text" class="form-control" id="description" name="description" required autocomplete="off" formControlName="description">
         </div>
         <div class="mb-3">
             <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" name="price" [(ngModel)]="price">
+            <input type="number" class="form-control" id="price" name="price" required autocomplete="off" formControlName="price">
         </div>
-        <div class="mb-3">
+        
+        <!-- <div class="mb-3">
             <label for="status_value1">Status</label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" value="active" name="status_value" id="status_value1" [(ngModel)]="status_value">
@@ -30,7 +31,7 @@
                     Inactivo
                 </label>
             </div>
-        </div>
+        </div> -->
         <div>
             <button class="btn btn-primary" type="submit">Send</button>
         </div>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,16 @@ export class DataService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAllElements(controller) {
+  getAllElements<T>(controller):Observable<T> {
+    var customUrl = this.url + controller;
+    return this.httpClient.get<T>(customUrl)
+  }
 
+  createElement(product, controller) {
+    
     var customUrl = this.url + controller;
 
-    console.log(customUrl)
-
-    return this.httpClient.get(customUrl)
-
+    return this.httpClient.post(customUrl, product);
   }
 
 }

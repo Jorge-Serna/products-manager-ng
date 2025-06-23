@@ -1,18 +1,20 @@
 export class Product{
-    id:number;
-    product_name:string;
-    upload_date:Date;
+    productName:string;
+    creationDate:Date;
     description:string;
     price:number;
-    active:boolean;
+    // status:boolean;
+    // available:number;
 
-    constructor(id:number, product_name:string, upload_date:Date, description:string, price:number, active:boolean)
+    //status:boolean, available: number
+
+    constructor(productName:string, creationDate:Date, description:string, price:number)
     {
-        this.id = id;
-        this.product_name = product_name;
-        this.upload_date = upload_date;
+        this.productName = productName;
+        this.creationDate = creationDate;
         this.description = description;
         this.price = price;
-        this.active = active;
+        // this.status = status;
+        // this.available = available;
     }
 }

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductsComponent } from './products/products/products.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ErrorComponent } from './error/error.component';
 import { DataService } from './data.service';
@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [

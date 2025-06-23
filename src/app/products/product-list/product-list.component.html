@@ -14,8 +14,8 @@
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.id }}</td>
-        <td>{{ product.product_name }}</td>
-        <td>{{ product.upload_date }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.creationDate }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.price | currency }}</td>
         <td *ngIf="product.active">Active</td>

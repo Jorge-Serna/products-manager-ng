@@ -14,13 +14,14 @@ export class ProductListComponent implements OnInit{
   constructor(private productsService: ProductsService){}
 
   ngOnInit(): void {
+
     this.productsService.products$.subscribe( data => {
       this.products = data;
     })
+
   }
 
-   removeProduct(id)
-  {
+  removeProduct(id) {
     
   }
 
