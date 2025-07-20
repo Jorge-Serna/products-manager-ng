@@ -21,6 +21,14 @@ export class ProductsService {
     });
   }
 
+  getProduct(id) {
+
+    this.dataService.getElementById(id, this.controllerName).subscribe( data => {
+      console.log(data)
+    })
+
+  }
+
   createProduct(p) {
     this.dataService.createElement(p, this.controllerName).subscribe();
   }

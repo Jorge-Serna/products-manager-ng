@@ -1,28 +1,40 @@
 <div class="mt-5">
-  <table class="table table-info table-striped">
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown button
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+
+  <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Product</th>
         <th scope="col">Date</th>
-        <th scope="col">Description</th>
         <th scope="col">Price</th>
-        <th scope="col">Status</th>
-        <th scope="col">Actions</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.id }}</td>
+      <tr *ngFor="let product of products; let i = index">
         <td>{{ product.productName }}</td>
         <td>{{ product.creationDate }}</td>
-        <td>{{ product.description }}</td>
         <td>{{ product.price | currency }}</td>
-        <td *ngIf="product.active">Active</td>
-        <td *ngIf="!product.active">Inctive</td>
         <td>
-          <a class="mx-1 p-2 text-decoration-none bg-warning rounded text-black" [routerLink]="['/updateProduct', product.id]">Edit</a>
-          <a class="mx-1 p-2 text-decoration-none bg-danger rounded text-black" [routerLink]="'/home'" (click)="removeProduct(product.id)">Delete</a>
+          <!-- <div [attr.class]="'dropdown'+i">
+            <button class="btn btn-secondary dropdown-toggle" type="button" [attr.data-bs-toggle]="'dropdown'+i" aria-expanded="false">
+              Actions
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#" [routerLink]="['/updateProduct', product.id]">Edit</a></li>
+              <li><a class="dropdown-item" href="#" [routerLink]="'/home'" (click)="removeProduct(product.id)">Delete</a></li>
+            </ul>
+          </div> -->
         </td>
       </tr>
     </tbody>

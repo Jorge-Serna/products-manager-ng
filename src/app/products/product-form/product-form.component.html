@@ -16,22 +16,26 @@
             <label for="price">Price</label>
             <input type="number" class="form-control" id="price" name="price" required autocomplete="off" formControlName="price">
         </div>
+        <div class="mb-3">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" required autocomplete="off" formControlName="stock">
+        </div>
         
-        <!-- <div class="mb-3">
-            <label for="status_value1">Status</label>
+        <div class="mb-3">
+            <label>Status</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="active" name="status_value" id="status_value1" [(ngModel)]="status_value">
-                <label class="form-check-label" for="status_value">
+                <input class="form-check-input" type="radio" value="true" id="true" formControlName="status">
+                <label class="form-check-label" for="true">
                     Activo
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" value="inactive" name="status_value" id="status_value2" [(ngModel)]="status_value">
-                <label class="form-check-label" for="status_value2">
+                <input class="form-check-input" type="radio" value="false" id="false" formControlName="status">
+                <label class="form-check-label" for="false">
                     Inactivo
                 </label>
             </div>
-        </div> -->
+        </div>
         <div>
             <button class="btn btn-primary" type="submit">Send</button>
         </div>

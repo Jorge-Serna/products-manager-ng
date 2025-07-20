@@ -23,7 +23,9 @@ export class ProductFormComponent {
       nameProduct: ['', Validators.required],
       creationDate: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required]
+      price: ['', Validators.required],
+      stock: ['', Validators.required],
+      status: [ false, Validators.required]
     })
 
   }
@@ -32,16 +34,18 @@ export class ProductFormComponent {
 
     if(this.productForm.valid) {
 
-      console.log(this.productForm.value)
-
-      var formValue = this.productForm.value;
+      var formValue = this.determineStatus(this.productForm.value);
 
       const newProduct: Product = new Product(
         formValue.nameProduct,
         formValue.creationDate,
         formValue.description,
-        +formValue.price
+        +formValue.price,
+        formValue.status,
+        formValue.stock
       );
+
+      console.log(newProduct)
 
       await this.productsService.createProduct(newProduct);
 
@@ -50,22 +54,16 @@ export class ProductFormComponent {
     } else {
       console.log('something went wrong, try to post this product later please');
     }
-
   }
 
-  getCheckboxValue(value)
-  {
-    let status
-    if(value == 'active'){
-      status = true;
-      return status;
+  determineStatus(p) {
+
+    if(p.status == 'true') {
+      p.status = true;
+    } else {
+      p.status = false;
     }
-    else if(value == 'inactive'){
-      status  = false;
-      return status;
-    }
-    else
-      console.log('error')
+    return p;
   }
 
   redirectTo(route: string)

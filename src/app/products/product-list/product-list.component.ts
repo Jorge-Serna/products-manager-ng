@@ -17,6 +17,8 @@ export class ProductListComponent implements OnInit{
 
     this.productsService.products$.subscribe( data => {
       this.products = data;
+
+      console.log(this.products)
     })
 
   }
@@ -24,31 +26,5 @@ export class ProductListComponent implements OnInit{
   removeProduct(id) {
     
   }
-
-
-  // products: Product [] = [];
-
-  // total = 500
-
-  // values = [
-  //   {price: 250},
-  //   {price: 35},
-  //   {price: 100},
-  //   {price: 20}
-  // ]
-
-  // constructor(private productsService: ProductsService){}
-
-  // ngOnInit(): void {
-  //   this.products = this.productsService.products_list;
-  //   this.learnReduceMethod()
-  // }
-  
- 
-  // learnReduceMethod()
-  // {
-  //   let result = this.values.reduce((init_value, item)=> init_value - item.price, this.total );
-  //   console.log(result)
-  // }
 
 }

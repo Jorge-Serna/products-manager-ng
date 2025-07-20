@@ -16,6 +16,11 @@ export class DataService {
     return this.httpClient.get<T>(customUrl)
   }
 
+  getElementById(id, controller) {
+    var customUrl = this.url + controller + '/' + id;
+    return this.httpClient.get(customUrl)
+  }
+
   createElement(product, controller) {
     
     var customUrl = this.url + controller;
