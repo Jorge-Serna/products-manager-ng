@@ -9,7 +9,7 @@ export class DataService {
 
   url = 'http://localhost:3000/'
 
-  constructor(private httpClient: HttpClient) { }
+  constructor( private httpClient: HttpClient ) { }
 
   getAllElements<T>(controller):Observable<T> {
     var customUrl = this.url + controller;

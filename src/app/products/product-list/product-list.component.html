@@ -1,32 +1,28 @@
-<div class="mt-5">
+<div class="bg-secondary p-4 rounded-4">
 
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Dropdown button
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-    </ul>
-  </div>
-
-  <table class="table">
+  <table class="table table-borderless mb-0">
     <thead>
       <tr>
-        <th scope="col">Product</th>
-        <th scope="col">Date</th>
-        <th scope="col">Price</th>
-        <th scope="col"></th>
+        <th class="text-center">id</th>
+        <th >Product</th>
+        <th class="text-center">Description</th>
+        <th class="text-center">Date</th>
+        <th class="text-center">Price</th>
+        <th class="text-center">Stock</th>
+        <th class="text-center">Status</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let product of products; let i = index">
+        <td class="text-center">{{ product.id }}</td>
         <td>{{ product.productName }}</td>
-        <td>{{ product.creationDate }}</td>
-        <td>{{ product.price | currency }}</td>
-        <td>
-          <!-- <div [attr.class]="'dropdown'+i">
+        <td>{{ product.description }}</td>
+        <td class="text-center">{{ product.creationDate }}</td>
+        <td class="text-center">{{ product.price | currency }}</td>
+        <td class="text-center">{{ product.stock }}</td>
+        <td class="text-center">{{ product.status }}</td>
+        <!--<td>
+           <div [attr.class]="'dropdown'+i">
             <button class="btn btn-secondary dropdown-toggle" type="button" [attr.data-bs-toggle]="'dropdown'+i" aria-expanded="false">
               Actions
             </button>
@@ -34,9 +30,12 @@
               <li><a class="dropdown-item" href="#" [routerLink]="['/updateProduct', product.id]">Edit</a></li>
               <li><a class="dropdown-item" href="#" [routerLink]="'/home'" (click)="removeProduct(product.id)">Delete</a></li>
             </ul>
-          </div> -->
-        </td>
+          </div> 
+        </td>-->
       </tr>
     </tbody>
   </table>
+
 </div>
+
+
