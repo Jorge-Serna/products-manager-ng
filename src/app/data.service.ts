@@ -21,7 +21,7 @@ export class DataService {
     return this.httpClient.get(customUrl)
   }
 
-  createElement(product, controller) {
+  postElement(product, controller) {
     
     var customUrl = this.url + controller;
 

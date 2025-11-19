@@ -7,7 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { ErrorComponent } from './error/error.component';
 import { DataService } from './data.service';
-import { ProductsService } from './products.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './home/home.component';
@@ -27,8 +26,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule
   ],
   providers: [
-    DataService,
-    ProductsService
+    DataService
   ],
   bootstrap: [AppComponent]
 })

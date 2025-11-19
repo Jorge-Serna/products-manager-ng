@@ -3,20 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
-import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductsComponent } from './products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductsService } from './products.service';
 import { ProductFiltersComponent } from './product-filters/product-filters.component';
 import { SharedModule } from '../shared/shared.module';
+import { ProductsFormFiltersComponent } from './products-form-filters/products-form-filters.component';
+import { ProductsFormNewProductComponent } from './products-form-new-product/products-form-new-product.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductListComponent,
-    ProductFormComponent,
-    ProductFiltersComponent
+    ProductFiltersComponent,
+    ProductsFormFiltersComponent,
+    ProductsFormNewProductComponent
   ],
   imports: [
     CommonModule,

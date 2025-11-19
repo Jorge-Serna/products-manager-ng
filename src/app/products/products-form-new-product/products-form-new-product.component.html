@@ -1,0 +1,53 @@
+
+<div class="container">
+    <div class="bg-secondary p-4 rounded-4 mb-4">
+        <form [formGroup]="productForm"  (submit)="onSubmit()">
+            <div class="row">
+                <div class="col col-3">
+                    <label for="productName">Product</label>
+                    <input type="text" class="form-control" id="productName" name="productName" required autocomplete="off" formControlName="productName">
+                </div>
+                <div class="col col-3">
+                    <label for="creationDate">Date of creation</label>
+                    <input type="date" class="form-control" id="creationDate" name="creationDate" required autocomplete="off" formControlName="creationDate">
+                </div>
+                <div class="col col-3">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" required autocomplete="off" formControlName="description">
+                </div>
+                <div class="col col-3">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required autocomplete="off" formControlName="price">
+                </div>
+                <div class="col col-3">
+                    <label for="stock">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock" required autocomplete="off" formControlName="stock">
+                </div>
+                
+                <div class="col col-3">
+                    <label>Status</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="true" id="true" formControlName="status">
+                        <label class="form-check-label" for="true">
+                            Activo
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" value="false" id="false" formControlName="status">
+                        <label class="form-check-label" for="false">
+                            Inactivo
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+

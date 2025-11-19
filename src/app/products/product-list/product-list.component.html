@@ -1,28 +1,46 @@
-<div class="bg-secondary p-4 rounded-4">
+<table class="table table-borderless mb-0 align-middle">
+  <thead>
+    <tr>
+      <th class="text-center">ID</th>
+      <th></th>
+      <th >Product</th>
+      <th >Description</th>
+      <th class="text-center">Date</th>
+      <th class="text-center">Price</th>
+      <th class="text-center">Category</th>
+      <th class="text-center">Stock</th>
+      <th class="text-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
 
-  <table class="table table-borderless mb-0">
-    <thead>
-      <tr>
-        <th class="text-center">id</th>
-        <th >Product</th>
-        <th class="text-center">Description</th>
-        <th class="text-center">Date</th>
-        <th class="text-center">Price</th>
-        <th class="text-center">Stock</th>
-        <th class="text-center">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products; let i = index">
+    <ng-container *ngFor="let product of products; let i = index">
+      <tr class="border-bottom border-gray-600">
         <td class="text-center">{{ product.id }}</td>
+        <td class="text-center">
+          <ng-container *ngIf="!product.deleted; else deleted">
+            <div class="d-flex justify-content-center align-items-end">
+              <i class="bi bi-check-lg text-success"></i>
+            </div>
+          </ng-container>
+
+          <ng-template #deleted>
+            <div class="d-flex justify-content-center align-items-end">
+              <i class="bi bi-x-lg text-danger"></i>
+            </div>
+          </ng-template>
+        </td>
         <td>{{ product.productName }}</td>
         <td>{{ product.description }}</td>
         <td class="text-center">{{ product.creationDate }}</td>
         <td class="text-center">{{ product.price | currency }}</td>
+        <td class="text-center">{{ product.category.catName }}</td>
         <td class="text-center">{{ product.stock }}</td>
-        <td class="text-center">{{ product.status }}</td>
+        <td class="text-center cursor-pointer">
+          <i class="bi bi-three-dots-vertical"></i>
+        </td>
         <!--<td>
-           <div [attr.class]="'dropdown'+i">
+          <div [attr.class]="'dropdown'+i">
             <button class="btn btn-secondary dropdown-toggle" type="button" [attr.data-bs-toggle]="'dropdown'+i" aria-expanded="false">
               Actions
             </button>
@@ -33,9 +51,11 @@
           </div> 
         </td>-->
       </tr>
-    </tbody>
-  </table>
+    </ng-container>
 
-</div>
+  </tbody>
+</table>
+
+
 
 

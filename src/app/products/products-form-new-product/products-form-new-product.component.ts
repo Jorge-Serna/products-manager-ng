@@ -1,33 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../../Product.model';
-import { ProductsService } from '../../products.service';
 import { Router } from '@angular/router';
+import { ProductsService } from '../products.service';
+
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrl: './product-form.component.scss'
+  selector: 'app-products-form-new-product',
+  templateUrl: './products-form-new-product.component.html',
+  styleUrl: './products-form-new-product.component.scss'
 })
-export class ProductFormComponent {
-
+export class ProductsFormNewProductComponent implements OnInit {
+  
   productForm: FormGroup;
 
   constructor(
     private fb: FormBuilder, 
     private productsService: ProductsService,
     private router: Router
-  ) {
+  ) {}
+
+  ngOnInit(): void {
 
     this.productForm = this.fb.group({
-      nameProduct: ['', Validators.required],
+      productName: ['', Validators.required],
       creationDate: ['', Validators.required],
       description: ['', Validators.required],
       price: ['', Validators.required],
       stock: ['', Validators.required],
-      status: [ false, Validators.required]
+      category: ['', Validators.required],
+      status: [ true, Validators.required]
     })
-
+    
   }
 
   async onSubmit() {
@@ -70,5 +74,5 @@ export class ProductFormComponent {
   {
     this.router.navigate([route]);
   }
-  
+
 }

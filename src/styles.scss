@@ -5,12 +5,13 @@ $table-bg: none;
 
 $pink-light: rgb(248, 180, 233);
 $secondary: rgb(247, 234, 215);
+$gray-600: rgb(174, 174, 174);
 
 $theme-colors: map-merge(
   $theme-colors,
   (
     "indigo": $indigo,
-    "gray": $gray-600,
+    "gray-600": $gray-600,
     "pink": $pink,
     "pink-light": $pink-light,
     "secondary": $secondary

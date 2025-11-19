@@ -8,7 +8,6 @@ import { Product } from '../Product.model';
 })
 export class ProductsService {
 
-  controllerName = 'products';
   
     private productsSubject = new BehaviorSubject<any>([]);
     products$ = this.productsSubject.asObservable();
@@ -16,20 +15,32 @@ export class ProductsService {
     constructor(private dataService: DataService) { }
     
     getProducts() {
-      this.dataService.getAllElements<Product[]>(this.controllerName).subscribe( data => {
+      this.dataService.getAllElements<Product[]>( 'products' ).subscribe( data => {
+        this.productsSubject.next(data);
+      });
+    }
+
+    getProductsF( filters ){
+      this.dataService.postElement( filters, 'products/filtered' ).subscribe( data => {
         this.productsSubject.next(data);
       });
     }
   
     getProduct(id) {
   
-      this.dataService.getElementById(id, this.controllerName).subscribe( data => {
+      this.dataService.getElementById(id, 'products').subscribe( data => {
         console.log(data)
       })
   
     }
   
     createProduct(p) {
-      this.dataService.createElement(p, this.controllerName).subscribe();
+      this.dataService.postElement(p, 'products').subscribe();
+    }
+
+    getCategories() {
+
+      return this.dataService.getAllElements<any[]>( 'categories' )
+
     }
 }
