@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductsService } from '../products.service';
@@ -10,39 +10,18 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsFormFiltersComponent implements OnInit {
 
-  filtersForm: FormGroup;
+  @Input('fg') filtersForm: FormGroup;
+
+  //filtersForm: FormGroup;
   categories = [];
 
-  blank = {
-    productId: null,
-    nameProduct: null,
-    creationDate: null,
-    category:null,
-    description: null,
-    status: true,
-    count: true,
-    page: 1
-  }
-
   constructor( 
-    private fb: FormBuilder, 
     private router: Router,
     private productsService: ProductsService
    ){
   }
 
   ngOnInit(){
-
-    this.filtersForm = this.fb.group({
-      productId: [null],
-      nameProduct: [null],
-      creationDate: [null],
-      category:[null],
-      description: [null],
-      status: [true],
-      count: [true],
-      page: [1]
-    })
 
     this.productsService.getCategories().subscribe( data => {
       this.categories = data;
@@ -52,14 +31,13 @@ export class ProductsFormFiltersComponent implements OnInit {
 
   onSubmit(){
 
-    const isFormBlank = this.compareBlankControlls();
-    if( isFormBlank ){
+    if( this.isFormEmpty() ){
       return
     }
 
 
-    this.productsService.getProductsF( this.filtersForm.value )
-    console.log(this.filtersForm.value)
+    // this.productsService.getProducts( this.filtersForm.value )
+
     
   }
 
@@ -71,32 +49,39 @@ export class ProductsFormFiltersComponent implements OnInit {
       page: 1
     });
 
-    this.productsService.getProductsF( this.filtersForm.value )
+    // this.productsService.getProductsF( this.filtersForm.value )
       
   }
 
-  compareBlankControlls(){
-
+  isFormEmpty(){
+    // remove white spaces of string inputs values
     Object.keys(this.filtersForm.value).forEach(key => {
 
       const value = this.filtersForm.get(key)?.value;
 
-      if (typeof(value) === 'string' && value.trim() === '')
+      if (typeof(value) === 'string' && value.trim() === '') {
         this.filtersForm.get(key).setValue(null);
-      
+      }
     });
 
-    if( JSON.stringify(this.filtersForm.value) === JSON.stringify(this.blank) ){
-      return true;
-    } else {
-      return false;
+    var filteredValidValues = Object.entries( this.filtersForm.value ).filter(([_, value]) =>
+      value !== null || value !== undefined || value !== ""
+    )
+
+    console.log(filteredValidValues)
+
+    if(filteredValidValues.length) {
+      return false
     }
+
+    return true;
+
+
+
   }
 
   redirectToNewProduct() {
-
     this.router.navigate(['/products/new-product']);
-
   }
 
 }

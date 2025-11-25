@@ -1,11 +1,22 @@
 <div class="container">
 
     <div class="bg-secondary p-4 rounded-4 mb-4">
-        <app-products-form-filters></app-products-form-filters>
+        <app-products-form-filters [fg]="filtersForm"></app-products-form-filters>
     </div>
 
-    <div class="bg-secondary p-4 rounded-4 mb-4">
+
+
+
+
+
+    
+
+    <div class="bg-secondary p-4 rounded-4">
         <app-product-list></app-product-list>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <app-products-paginator></app-products-paginator>
     </div>
 
 </div>

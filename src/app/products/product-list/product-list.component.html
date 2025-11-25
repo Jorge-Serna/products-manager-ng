@@ -12,7 +12,7 @@
       <th class="text-center">Actions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngIf="products">
 
     <ng-container *ngFor="let product of products; let i = index">
       <tr class="border-bottom border-gray-600">
@@ -34,7 +34,7 @@
         <td>{{ product.description }}</td>
         <td class="text-center">{{ product.creationDate }}</td>
         <td class="text-center">{{ product.price | currency }}</td>
-        <td class="text-center">{{ product.category.catName }}</td>
+        <td class="text-center">{{ product.category?.catName }}</td>
         <td class="text-center">{{ product.stock }}</td>
         <td class="text-center cursor-pointer">
           <i class="bi bi-three-dots-vertical"></i>

@@ -7,17 +7,8 @@ import { ProductsService } from '../products.service';
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
-  constructor(private router: Router, private productsService: ProductsService) {}
-
-  ngOnInit(): void {
-    this.productsService.getProducts();
-  }
-
-  redirectTo(route: string)
-  {
-    this.router.navigate([route]);
-  }
+  constructor() {}
 
 }

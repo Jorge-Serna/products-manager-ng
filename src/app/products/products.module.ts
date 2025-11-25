@@ -10,6 +10,7 @@ import { ProductFiltersComponent } from './product-filters/product-filters.compo
 import { SharedModule } from '../shared/shared.module';
 import { ProductsFormFiltersComponent } from './products-form-filters/products-form-filters.component';
 import { ProductsFormNewProductComponent } from './products-form-new-product/products-form-new-product.component';
+import { ProductsPaginatorComponent } from './products-paginator/products-paginator.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ProductsFormNewProductComponent } from './products-form-new-product/pro
     ProductListComponent,
     ProductFiltersComponent,
     ProductsFormFiltersComponent,
-    ProductsFormNewProductComponent
+    ProductsFormNewProductComponent,
+    ProductsPaginatorComponent
   ],
   imports: [
     CommonModule,
