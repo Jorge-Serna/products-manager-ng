@@ -2,25 +2,28 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProductsRoutingModule } from './products-routing.module';
-import { ProductListComponent } from './product-list/product-list.component';
+import { ProductListComponent } from './products-catalog/products-list/product-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductsService } from './products.service';
-import { ProductFiltersComponent } from './product-filters/product-filters.component';
 import { SharedModule } from '../shared/shared.module';
-import { ProductsFormFiltersComponent } from './products-form-filters/products-form-filters.component';
-import { ProductsFormNewProductComponent } from './products-form-new-product/products-form-new-product.component';
-import { ProductsPaginatorComponent } from './products-paginator/products-paginator.component';
+import { ProductsPaginatorComponent } from './products-catalog/products-paginator/products-paginator.component';
+import { ProductsSearchFormComponent } from './products-catalog/products-search-form/products-search-form.component';
+import { ProductsCreateUpdateComponent } from './products-create-update/products-create-update.component';
+import { ProductsPageComponent } from './products-catalog/products-page/products-page.component';
+import { ProductsDetailComponent } from './products-detail/products-detail.component';
+
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductListComponent,
-    ProductFiltersComponent,
-    ProductsFormFiltersComponent,
-    ProductsFormNewProductComponent,
-    ProductsPaginatorComponent
+    ProductsSearchFormComponent,
+    ProductsCreateUpdateComponent,
+    ProductsPaginatorComponent,
+    ProductsPageComponent,
+    ProductsDetailComponent,
   ],
   imports: [
     CommonModule,

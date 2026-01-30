@@ -1,0 +1,52 @@
+
+<div class="container">
+    <div class="bg-secondary p-4 rounded-4 mb-4">
+        <h4 class="text-center text-uppercase">New product</h4>
+        <div class="d-flex justify-content-end">
+            <div>{{ today | date:"longDate" }}</div>
+        </div>
+        <form [formGroup]="productForm"  (submit)="onSubmit()">
+            <div class="row mb-2 justify-content-center">
+                <div class="col col-4">
+                    <label for="productName">Product</label>
+                    <input type="text" class="form-control" id="productName" name="productName" required autocomplete="off" formControlName="productName">
+                </div>
+
+                <div class="col-4">
+                    <label for="category"></label>
+                    <select class="form-control" name="category" id="category" formControlName="category">
+                        <option value="" selected disabled>--Select--</option>
+                        <ng-container *ngFor="let cat of categories">
+                            <option value="{{cat.id}}">{{cat.catName}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+                
+            </div>
+            <div class="row mb-2 justify-content-center">
+                <div class="col col-3">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required autocomplete="off" formControlName="price">
+                </div>
+                <div class="col col-3">
+                    <label for="stock">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock" required autocomplete="off" formControlName="stock">
+                </div>
+            </div>
+            <div class="row mb-3 justify-content-center">
+                <div class="col col-8">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" id="description" rows="5" formControlName="description" required></textarea>
+                </div>
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary px-4 mx-2" type="submit">Upload product</button>
+                <button class="btn btn-danger px-4 mx-2" type="button">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+

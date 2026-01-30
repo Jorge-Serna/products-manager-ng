@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { DataService } from '../data.service';
 import { Product } from '../Product.model';
 
@@ -18,33 +18,29 @@ export class ProductsService {
     constructor(private dataService: DataService) { }
 
     getProducts( filters ){
-      this.dataService.postElement( filters, 'products/filtered' ).subscribe( data => {
-
-        if(filters.count && (Array.isArray(data) && data.length == 2)) {
-          this.productsSubject.next(data[0]);
-          this.totalProductsSubject.next(data[1]);
-        } else {
-          this.productsSubject.next(data);
-        }
-
-      });
+      return this.dataService.postElement( filters, 'products/filtered' ).pipe( 
+        map( data => {
+          if(filters.count && (Array.isArray(data) && data.length == 2)) {
+            this.productsSubject.next(data[0]);
+            this.totalProductsSubject.next(data[1]);
+          } else {
+            this.productsSubject.next(data);
+          }
+      })
+      );
     }
   
     getProduct(id) {
   
-      this.dataService.getElementById(id, 'products').subscribe( data => {
-        console.log(data)
-      })
+      this.dataService.getElementById(id, 'products')
   
     }
   
     createProduct(p) {
-      this.dataService.postElement(p, 'products').subscribe();
+      this.dataService.postElement(p, 'products')
     }
 
     getCategories() {
-
       return this.dataService.getAllElements<any[]>( 'categories' )
-
     }
 }
