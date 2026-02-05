@@ -1,7 +1,10 @@
 <div class="container my-3">
 
     <div class="px-4 mb-4 fs-7">
-        <app-products-search-form></app-products-search-form>
+        <app-products-search-form 
+        [searchProductsForm]="searchProductsForm"
+        (getProducts)="getProducts()"
+        ></app-products-search-form>
     </div>
 
     <div class="bg-secondary rounded-4 p-4 mb-4">

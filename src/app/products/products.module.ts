@@ -10,8 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 import { ProductsPaginatorComponent } from './products-catalog/products-paginator/products-paginator.component';
 import { ProductsSearchFormComponent } from './products-catalog/products-search-form/products-search-form.component';
 import { ProductsCreateUpdateComponent } from './products-create-update/products-create-update.component';
-import { ProductsPageComponent } from './products-catalog/products-page/products-page.component';
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
+import { ProductsCatalogComponent } from './products-catalog/products-catalog/products-catalog.component';
 
 
 
@@ -22,7 +22,7 @@ import { ProductsDetailComponent } from './products-detail/products-detail.compo
     ProductsSearchFormComponent,
     ProductsCreateUpdateComponent,
     ProductsPaginatorComponent,
-    ProductsPageComponent,
+    ProductsCatalogComponent,
     ProductsDetailComponent,
   ],
   imports: [

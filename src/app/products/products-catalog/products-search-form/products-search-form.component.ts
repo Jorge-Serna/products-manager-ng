@@ -1,81 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductsService } from '../../products.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-search-form',
   templateUrl: './products-search-form.component.html',
   styleUrl: './products-search-form.component.scss'
 })
-export class ProductsSearchFormComponent implements OnInit {
+export class ProductsSearchFormComponent implements OnInit  {
 
-  filtersForm: FormGroup;
+  @Input() searchProductsForm: FormGroup;
+  @Output() getProducts = new EventEmitter<void>();
+
   categories = [];
 
   constructor( 
-    private fb: FormBuilder, 
     private productsService: ProductsService,
-    private router: Router
   ){}
 
   ngOnInit(): void {
-    // check LocalStorage
-
-    this.filtersForm = this.fb.group({
-      productId: [null],
-      nameProduct: [null],
-      creationDate: [null],
-      category:[null],
-      description: [null],
-      deleted: [null],
-
-      count: [true],
-      page: [1]
-    })
-
     this.productsService.getCategories().subscribe( data => {
       this.categories = data;
     })
-
-    this.productsService.getProducts( this.filtersForm.value ).subscribe()
   }
 
   onSubmit(){
-    if( this.isFormEmpty() ){
-      return
-    }
 
-    this.productsService.getProducts( this.filtersForm.value )
+    if( this.isFormEmpty() )
+      return;
+
+    this.getProducts.emit();
+
   }
 
   resetForm() {
-
-
     if( this.isFormEmpty() ){
       return
     }
 
-    this.filtersForm.reset({
+    this.searchProductsForm.reset({
       category: '',
+      dleted: false,
       count: true,
       page: 1
     });
 
-    this.productsService.getProducts( this.filtersForm.value )
-      
+    this.getProducts.emit();
+    
   }
 
   isFormEmpty(){
     // remove white spaces of string inputs values
-    Object.entries(this.filtersForm.value).forEach( ctrl => {
+    Object.entries(this.searchProductsForm.value).forEach( ctrl => {
       if (typeof(ctrl[1]) === 'string' && ctrl[1].trim() === '') {
-        this.filtersForm.get(ctrl[0]).setValue( null );
+        this.searchProductsForm.get(ctrl[0]).setValue( null );
       }
     });
 
-    var f = { ...this.filtersForm.value };
-    const { count, page, ...rest } = f;
+    var f = { ...this.searchProductsForm.value };
+    const { deleted, count, page, ...rest } = f;
 
     var filteredValidValues = Object.entries( rest ).filter(([key, value]) =>
       value !== null && value !== undefined && value !== "" )
@@ -85,10 +68,6 @@ export class ProductsSearchFormComponent implements OnInit {
     }
 
     return true;
-  }
-
-  redirectToNewProduct() {
-    this.router.navigate(['/products/new-product']);
   }
 
 }

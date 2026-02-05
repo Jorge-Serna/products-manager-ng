@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ProductsService } from '../../products.service';
 
 @Component({
@@ -6,11 +6,11 @@ import { ProductsService } from '../../products.service';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
-export class ProductListComponent implements OnInit{
-
+export class ProductListComponent implements OnInit {
+  
   products;
 
-  constructor(private productsService: ProductsService){}
+  constructor( private productsService: ProductsService ){}
 
   ngOnInit(): void {
 
