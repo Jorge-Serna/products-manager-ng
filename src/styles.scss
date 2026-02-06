@@ -11,6 +11,8 @@ $theme-colors: map-merge(
   $theme-colors,
   (
     "indigo": $indigo,
+    "teal-200": $teal-200,
+    "red-300": $red-300,
     "gray-600": $gray-600,
     "pink": $pink,
     "pink-light": $pink-light,
@@ -26,4 +28,7 @@ $theme-colors: map-merge(
 
 .fs-7{
   font-size: 14px;
+}
+.fs-8{
+  font-size: 12px;
 }

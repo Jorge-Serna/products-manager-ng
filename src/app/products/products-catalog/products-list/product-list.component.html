@@ -4,11 +4,12 @@
   <thead>
     <tr class="fs-7">
       <th >Product</th>
+      <th class="text-center">Availabilty</th>
       <th >Description</th>
       <th class="text-center">Uploaded at</th>
       <th class="text-center">Price</th>
       <th class="text-center">Category</th>
-      <th class="text-center">Stock</th>
+      
       <th class="text-center">Actions</th>
     </tr>
   </thead>
@@ -35,11 +36,20 @@
             {{ product.productName }}
           </a>
         </td>
+
+
+        <td class="text-center fs-8 fw-medium">
+          <span class="d-block rounded-2" [class.bg-teal-200]="product.stock > 0" [class.bg-red-300]="product.stock == 0">
+            {{ product.stock }}
+          </span>
+        </td>
+
+
         <td>{{ product.description }}</td>
         <td class="text-center">{{ product.createdAt | date:"mediumDate" }}</td>
         <td class="text-center fs-6 fw-medium">{{ product.price | currency }}</td>
         <td class="text-center">{{ product.category?.catName }}</td>
-        <td class="text-center">{{ product.stock }}</td>
+        
 
 
         <!-- <td class="text-center cursor-pointer">
@@ -53,9 +63,9 @@
               <i class="bi bi-three-dots-vertical"></i>
             </button>
             <ul dropdownMenu class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><a class="dropdown-item" href="#">Edit</a></li>
+              <li><a class="dropdown-item" href="#">See details</a></li>
+              <li><a class="dropdown-item" href="#">Increase/decrease stock</a></li>
             </ul>
           </app-dropdown>
 
